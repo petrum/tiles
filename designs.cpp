@@ -1,18 +1,22 @@
 #include <vector>
 #include <iostream>
 #include <bitset>
+#include <cassert>
+#include <chrono>
+#include <ctime>
 
-// $> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs && ./designs < stripes.txt
+// $> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs && ./designs 7 < stripes.txt
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
 struct Designs
 {
-    Designs();
+    Designs(int s);
     void load();
     void run();
     void solve(int i);
 private:
+    const int stripes;
     std::vector<int> v;
     typedef std::vector<int> TDesigns;
     TDesigns d;
@@ -29,7 +33,7 @@ std::ostream& operator <<(std::ostream& o, const Designs::TDesigns& d)
     return o;
 }
 
-Designs::Designs() : d(11)
+Designs::Designs(int s) : stripes(s), d(s)
 {
     LOG;
 }
@@ -62,7 +66,7 @@ void Designs::solve(int n)
 {
     //std::cerr << n << " ";
     //LOG;
-    if (n >= 11)
+    if (n >= stripes)
     {
         ++count;
         if (count % 1000000 == 0)
@@ -84,10 +88,20 @@ void Designs::solve(int n)
     }
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    Designs d;
+    auto start = std::chrono::system_clock::now();
+    std::time_t start_time = std::chrono::system_clock::to_time_t(start);
+    assert(argc == 2);
+    int stripes = std::stoi(argv[1]);
+    Designs d(stripes);
     d.load();
     d.run();
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);   
+    std::cout << "start at " << std::ctime(&start_time);
+    std::cout << "end at " << std::ctime(&end_time);
+    std::cout << "elapsed " << elapsed_seconds.count() << " seconds for computing " << stripes << " stripes\n";
 	return 0;
 }
