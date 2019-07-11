@@ -8,6 +8,7 @@ struct Stripe
     bool push2();
     void pop();
     bool push3();
+    bool fool() const {return len == v.size(); }
 private:
     std::stack<int> row;
     std::vector<int> v;
@@ -50,6 +51,7 @@ private:
     int length;
     int designCount = 0;
     std::vector<Stripe> stripes;
+    int crtRow = 0;
 };
 
 Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
@@ -58,6 +60,7 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 
 void Tiles::run()
 {
+        
 }
 
 int main(int argc, char* argv[])
