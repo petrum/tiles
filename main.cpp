@@ -2,7 +2,9 @@
 
 struct Tiles
 {
-    Tiles(int stripes, int length) {}
+    Tiles(int s, int l) : stripes(s), length(l) {}
+    int stripes;
+    int length;
 };
 
 int main(int argc, char* argv[])
