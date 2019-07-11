@@ -2,6 +2,12 @@
 #include <vector>
 #include <stack>
 
+struct Row
+{
+    std::stack<int> s;
+    std::size_t len = 0;
+};
+
 struct Tiles
 {
     Tiles(int, int);
@@ -31,6 +37,11 @@ int main(int argc, char* argv[])
         return -1;
     }
     int stripes = std::stoi(argv[1]), length = std::stoi(argv[2]);
+    if (stripes < 1 || length < 3)
+    {
+        std::cerr << "Invalid parameters\n";
+        return -2;
+    }
     Tiles tiles(stripes, length);
     tiles.run();
     std::cout << "There were " << tiles.getDesignCount() << " designs for " << stripes << " x " << length << " room." << std::endl;
