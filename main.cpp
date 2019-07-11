@@ -5,7 +5,7 @@
 struct Tiles
 {
     Tiles(int, int);
-    void design();
+    void run();
     int getDesignCount() const {return designCount; }
 private:
     int stripes;
@@ -18,8 +18,9 @@ Tiles::Tiles(int s, int l) : stripes(s), length(l), data(s)
 {
 }
 
-void Tiles::design()
+void Tiles::run()
 {
+
 }
 
 int main(int argc, char* argv[])
@@ -31,7 +32,7 @@ int main(int argc, char* argv[])
     }
     int stripes = std::stoi(argv[1]), length = std::stoi(argv[2]);
     Tiles tiles(stripes, length);
-    tiles.design();
+    tiles.run();
     std::cout << "There were " << tiles.getDesignCount() << " designs for " << stripes << " x " << length << " room." << std::endl;
     return 0;
 }
