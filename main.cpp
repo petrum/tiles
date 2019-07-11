@@ -83,7 +83,7 @@ std::ostream& operator <<(std::ostream& o, const Tiles& t)
     o << "rows = " << t.rows << ", length = " << t.length << ", designCount = " << t.designCount << ", crtRow = " << t.crtRow;
     for (const auto& s: t.stripes)
     {
-        o << "\n\t" << s << std::endl;
+        o << "\n\t" << s;
     }
     return o;
 }
@@ -96,7 +96,9 @@ bool Tiles::isValid() const
     const Stripe& s2 = stripes[crtRow];
     const Stripe& s1 = stripes[crtRow - 1];
     assert (s1.full());
-    return s1.v[s2.len] != 0; // 
+    if (s2.full())
+        return true;
+    return s1.v[s2.len] != 0; 
 }
 
 Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
