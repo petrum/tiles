@@ -121,7 +121,7 @@ void Tiles::solve2()
         Stripe& s = stripes[crtRow];
         if (s.full() && (crtRow == stripes.size() - 1))
         {
-            std::cout << "Found design\n" << *this << std::endl;
+            std::cout << "Found design:\n" << *this << std::endl;
             ++designCount;
             return;
         }
