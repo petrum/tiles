@@ -2,9 +2,9 @@
 #include <vector>
 #include <stack>
 
-struct Row
+struct Stripe
 {
-    std::stack<int> s;
+    std::stack<int> row;
     std::size_t len = 0;
 };
 
@@ -14,13 +14,13 @@ struct Tiles
     void run();
     int getDesignCount() const {return designCount; }
 private:
-    int stripes;
+    int rows;
     int length;
     int designCount = 0;
-    std::vector<std::stack<int>> data;
+    std::vector<Stripe> stripes;
 };
 
-Tiles::Tiles(int s, int l) : stripes(s), length(l), data(s)
+Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r)
 {
 }
 
@@ -36,14 +36,14 @@ int main(int argc, char* argv[])
         std::cerr << "Please provide the number of stripes and length (e.g. $> tiles 11 30)\n";
         return -1;
     }
-    int stripes = std::stoi(argv[1]), length = std::stoi(argv[2]);
-    if (stripes < 1 || length < 3)
+    int rows = std::stoi(argv[1]), length = std::stoi(argv[2]);
+    if (rows < 1 || length < 3)
     {
         std::cerr << "Invalid parameters\n";
         return -2;
     }
-    Tiles tiles(stripes, length);
+    Tiles tiles(rows, length);
     tiles.run();
-    std::cout << "There were " << tiles.getDesignCount() << " designs for " << stripes << " x " << length << " room." << std::endl;
+    std::cout << "There were " << tiles.getDesignCount() << " designs for " << rows << " x " << length << " room." << std::endl;
     return 0;
 }
