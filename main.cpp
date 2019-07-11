@@ -77,17 +77,9 @@ void Tiles::run()
 
 int main(int argc, char* argv[])
 {
-    if (argc != 3)
-    {
-        std::cerr << "Please provide the number of stripes and length (e.g. $> tiles 11 30)\n";
-        return -1;
-    }
+    assert(argc == 3);
     int rows = std::stoi(argv[1]), length = std::stoi(argv[2]);
-    if (rows < 1 || length < 3)
-    {
-        std::cerr << "Invalid parameters\n";
-        return -2;
-    }
+    assert (rows > 0 && length > 1);
     Tiles tiles(rows, length);
     tiles.run();
     std::cout << "There were " << tiles.getDesignCount() << " designs for " << rows << " x " << length << " room." << std::endl;
