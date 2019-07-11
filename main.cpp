@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <stack>
 
 struct Tiles
 {
@@ -9,6 +11,7 @@ private:
     int stripes;
     int length;
     int designCount = 0;
+    std::vector<std::stack<int>> data;
 };
 
 void Tiles::design()
