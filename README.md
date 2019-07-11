@@ -11,7 +11,7 @@
 ## customized approach
 * instead of solving all the problems, we try to solve the length = 30 specific problem.
 * we can still customize on the stripes number
-* we first generate all the possible stripes with lengty = 30
+* we first generate all the possible stripes with lengt = 30
 * the ```stripes.cpp``` does this, see the result in ```stripes.txt```
 * then the ```designs.cpp``` takes this data, and tries to stack them together
 * we encode each stripe as an int (30 bits)
