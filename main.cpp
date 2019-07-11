@@ -3,6 +3,8 @@
 #include <stack>
 #include <cassert>
 
+#define LOG std::cerr << __FUNCTION__ << std::endl
+
 struct Stripe
 {
     Stripe(int l) : v(l) {}
@@ -17,6 +19,7 @@ struct Stripe
 
 bool Stripe::push2()
 {
+    LOG;
     if (len + 2 > len)
         return false;
     row.push(2);
@@ -72,6 +75,7 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 
 void Tiles::solve()
 {
+
     {
         Stripe& s = stripes[crtRow];
         if (s.full() && (crtRow == stripes.size() - 1))
