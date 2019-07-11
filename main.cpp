@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <cassert>
 
 struct Stripe
 {
@@ -8,7 +9,8 @@ struct Stripe
     bool push2();
     void pop();
     bool push3();
-    bool fool() const {return len == v.size(); }
+    bool fool() const { return len == v.size(); }
+    int getLen() const { return len; }
 private:
     std::stack<int> row;
     std::vector<int> v;
@@ -46,6 +48,7 @@ struct Tiles
     Tiles(int, int);
     void run();
     int getDesignCount() const {return designCount; }
+    bool isValid() const;
 private:
     int rows;
     int length;
@@ -54,13 +57,22 @@ private:
     int crtRow = 0;
 };
 
+bool Tiles::isValid() const
+{
+    if (crtRow == 0)
+        return true;
+    const Stripe& s2 = stripes[crtRow];
+    const Stripe& s1 = stripes[crtRow - 1];
+    assert (s1.getLen() == length);
+}
+
 Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 {
 }
 
 void Tiles::run()
 {
-    
+
 }
 
 int main(int argc, char* argv[])
