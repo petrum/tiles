@@ -4,9 +4,9 @@
 ## brute force
 * ```main.cpp``` tries to solve the problem brute-force in a generic way
 * we parameterize both stripes and the length
-* it is very slow
 * the implementation is similar with placing each tile individually
 * as we place then we check size, and the edges to the previous stripe
+* it is very slow
 
 ## customized approach
 * instead of solving all the problems, we try to solve the length = 30 specific problem.
