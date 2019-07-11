@@ -4,9 +4,32 @@
 
 struct Stripe
 {
+    void push2();
+    void pop();
+    void push3();
+private:
     std::stack<int> row;
-    std::size_t len = 0;
+    int len = 0;
 };
+
+void Stripe::push2()
+{
+    row.push(2);
+    len += 2;
+}
+
+void Stripe::pop()
+{
+    int i = row.top();
+    row.pop();
+    len -= i;
+}
+
+void Stripe::push3()
+{
+    row.push(3);
+    len += 3;
+}
 
 struct Tiles
 {
