@@ -1,7 +1,8 @@
 #include <vector>
 #include <iostream>
+#include <bitset>
 
-// $> g++ designs.cpp -Wall -Wextra -o designs && ./designs < stripes.txt
+// $> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs && ./designs < stripes.txt
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
@@ -16,7 +17,17 @@ private:
     typedef std::vector<int> TDesigns;
     TDesigns d;
     std::size_t count = 0;
+    friend std::ostream& operator <<(std::ostream& o, const Designs::TDesigns& design);
 };
+
+std::ostream& operator <<(std::ostream& o, const Designs::TDesigns& d)
+{
+    for (int i: d)
+    {
+        std::cout << "\t- " << i << " " << std::bitset<30>(i).to_string() << std::endl;
+    }
+    return o;
+}
 
 Designs::Designs() : d(11)
 {
@@ -32,7 +43,7 @@ void Designs::load()
 		std::string s;
 		std::cin >> s;
 	}
-	std::cerr << "input size = " << v.size() << "\n";    
+	std::cerr << "input size = " << v.size() << "\n";
 }
 
 void Designs::run()
@@ -53,7 +64,12 @@ void Designs::solve(int n)
     //LOG;
     if (n >= 12)
     {
-        std::cout << "- design " << count++ << "\n";
+        ++count;
+        if (count % 1000000 == 0)
+        {
+            //std::cout << "- design " << count << ":\n" << d << "\n";
+            std::cout << "- design " << count << "\n";
+        }
         return;
     }
 
