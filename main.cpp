@@ -26,7 +26,6 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r)
 
 void Tiles::run()
 {
-
 }
 
 int main(int argc, char* argv[])
