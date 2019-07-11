@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./tiles 11 30
+./tiles 2 8
