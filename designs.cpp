@@ -76,7 +76,7 @@ void Designs::solve(int n)
     for (std::size_t i = 0; i != v.size(); ++i)
     {
         int x = v[i];
-        if ((d[n-1] & x) == 0b100000000000000000000000000000)
+        if ((d[n - 1] & x) == 0b100000000000000000000000000000)
         {
             d[n] = x;
             solve(n + 1);
