@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <stack>
+#include <deque>
 #include <cassert>
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
@@ -12,33 +12,51 @@ struct Stripe
     void pop();
     bool push3();
     bool full() const { return len == v.size(); }
-    std::stack<int> row;
+    std::deque<int> row;
     std::vector<int> v;
     int len = 0;
 };
 
+std::ostream& operator <<(std::ostream& o, const Stripe& s)
+{
+    o << "len = " << s.len << ", row = [";
+    for (auto i: s.row)
+    {
+        o << i << ", ";
+    }
+    o << "], v = [";
+    for (auto i: s.v)
+    {
+        o << i;
+    }
+    o << "]"; 
+}
+
 bool Stripe::push2()
 {
     LOG;
-    if (len + 2 > len)
+    if (len + 2 > v.size())
         return false;
-    row.push(2);
+    row.push_back(2);
     v[len++] = 0;
     v[len++] = 1;
 }
 
 void Stripe::pop()
 {
-    int i = row.top();
-    row.pop();
+    LOG;
+    int i = row.back();
+    row.pop_back();
     len -= i;
+    std::cerr << *this << std::endl;
 }
 
 bool Stripe::push3()
 {
-    if (len + 3 > len)
+    LOG;
+    if (len + 3 > v.size())
         return false;
-    row.push(3);
+    row.push_back(3);
     v[len++] = 0;
     v[len++] = 1;    
     v[len++] = 2;
@@ -57,16 +75,28 @@ private:
     int designCount = 0;
     std::vector<Stripe> stripes;
     int crtRow = 0;
+    friend std::ostream& operator <<(std::ostream& o, const Tiles& t);
 };
+
+std::ostream& operator <<(std::ostream& o, const Tiles& t)
+{
+    o << "rows = " << t.rows << ", length = " << t.length << ", designCount = " << t.designCount << ", crtRow = " << t.crtRow;
+    for (const auto& s: t.stripes)
+    {
+        o << "\n\t" << s << std::endl;
+    }
+    return o;
+}
 
 bool Tiles::isValid() const
 {
+    LOG;
     if (crtRow == 0)
         return true;
     const Stripe& s2 = stripes[crtRow];
     const Stripe& s1 = stripes[crtRow - 1];
     assert (s1.full());
-    return s1.v[s2.len] != 0;
+    return s1.v[s2.len] != 0; // 
 }
 
 Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
@@ -75,7 +105,8 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 
 void Tiles::solve()
 {
-
+    LOG;
+    std::cerr << *this << std::endl;
     {
         Stripe& s = stripes[crtRow];
         if (s.full() && (crtRow == stripes.size() - 1))
@@ -108,6 +139,7 @@ void Tiles::solve()
 
 void Tiles::run()
 {
+    LOG;
     solve();
 }
 
