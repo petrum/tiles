@@ -5,6 +5,8 @@
 * ```main.cpp``` tries to solve the problem brute-force in a generic way
 * we parameterize both stripes and the length
 * it is very slow
+* the implementation is similar with placing each tile individually
+* as we place then we check size, and the edges to the previous stripe
 
 ## customized approach
 * instead of solving all the problems, we try to solve the length = 30 specific problem.
@@ -12,6 +14,10 @@
 * we first generate all the possible stripes with lengty = 30
 * the ```stripes.cpp``` does this, see the result in ```stripes.txt```
 * then the ```designs.cpp``` takes this data, and tries to stack them together
+* we encode each stripe as an int (30 bits)
+* a tile with len = 2 takes 2 bits, len = 3 takes 3 bits
+* the first bit on tile is "1", the rest are "0"
+* this will let us compare 2 stripes for edges in s single bitewise "&" operation
 
 stripes	| designs | 	sec     | 	min	| actual
 ------- | --------|------------|------|--------
