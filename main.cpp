@@ -14,7 +14,7 @@ struct Stripe
     bool full() const { return len == v.size(); }
     std::vector<int> row;
     std::vector<int> v;
-    int len = 0;
+    std::size_t len = 0;
 };
 
 std::ostream& operator <<(std::ostream& o, const Stripe& s)
@@ -29,7 +29,8 @@ std::ostream& operator <<(std::ostream& o, const Stripe& s)
     {
         o << i;
     }
-    o << "]"; 
+    o << "]";
+    return o;
 }
 
 bool Stripe::push2()
@@ -77,7 +78,7 @@ private:
     int length;
     int designCount = 0;
     std::vector<Stripe> stripes;
-    int crtRow = 0;
+    std::size_t crtRow = 0;
     friend std::ostream& operator <<(std::ostream& o, const Tiles& t);
 };
 
