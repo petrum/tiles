@@ -70,6 +70,7 @@ struct Tiles
     bool isValid() const;
     void solve();
 private:
+    void solve2();
     int rows;
     int length;
     int designCount = 0;
@@ -107,6 +108,13 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 
 void Tiles::solve()
 {
+    int crtRowTmp = crtRow;
+    solve2();
+    crtRow = crtRowTmp;
+}
+
+void Tiles::solve2()
+{
     LOG;
     std::cerr << *this << std::endl;
     {
@@ -121,22 +129,19 @@ void Tiles::solve()
             ++crtRow;
     }
 
-    Stripe& s = stripes[crtRow];
-    int crtRowTmp = crtRow;     
+    Stripe& s = stripes[crtRow]; 
     if (s.push2())
     {
         if (isValid())
             solve();
         s.pop();
     }
-    crtRow = crtRowTmp;
     if (s.push3())
     {
         if (isValid())
             solve();
         s.pop();
     }
-    crtRow = crtRowTmp;
 }
 
 void Tiles::run()
