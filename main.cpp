@@ -4,18 +4,23 @@
 
 struct Stripe
 {
-    void push2();
+    Stripe(int l) : v(l) {}
+    bool push2();
     void pop();
-    void push3();
+    bool push3();
 private:
     std::stack<int> row;
+    std::vector<int> v;
     int len = 0;
 };
 
-void Stripe::push2()
+bool Stripe::push2()
 {
+    if (len + 2 > len)
+        return false;
     row.push(2);
-    len += 2;
+    v[len++] = 0;
+    v[len++] = 1;
 }
 
 void Stripe::pop()
@@ -25,10 +30,14 @@ void Stripe::pop()
     len -= i;
 }
 
-void Stripe::push3()
+bool Stripe::push3()
 {
+    if (len + 3 > len)
+        return false;
     row.push(3);
-    len += 3;
+    v[len++] = 0;
+    v[len++] = 1;    
+    v[len++] = 2;
 }
 
 struct Tiles
@@ -43,7 +52,7 @@ private:
     std::vector<Stripe> stripes;
 };
 
-Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r)
+Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 {
 }
 
