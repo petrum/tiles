@@ -29,3 +29,54 @@ stripes	| designs | 	sec     | 	min	| actual
 
 * it seems it increases by a factor of 15
 * this estimates that it will solve the stripes = 11 in 17 years!
+
+## comparing results
+
+Comparing results for the two approaches produces the same number of results:
+### Brute force
+```
+$> ./tiles 1 30 2>/dev/null
+There were 1897 designs for 1 x 30 room.
+
+$> ./tiles 2 30 2>/dev/null
+There were 17282 designs for 2 x 30 room.
+
+$> ./tiles 3 30 2>/dev/null
+There were 221490 designs for 3 x 30 room.
+
+```
+### Customized
+```
+g++ designs.cpp -std=c++11 -Wall -Wextra -o designs && ./designs 1 < stripes.txt
+Designs
+input size = 1897
+run
+design count = 1897
+start at Thu Jul 11 17:41:53 2019
+end at Thu Jul 11 17:41:53 2019
+elapsed 0.00382874 seconds for computing 1 stripes
+
+$> ./designs 2 < stripes.txt
+Designs
+input size = 1897
+run
+design count = 17282
+start at Thu Jul 11 17:42:24 2019
+end at Thu Jul 11 17:42:24 2019
+elapsed 0.0368942 seconds for computing 2 stripes
+
+$> ./designs 3 < stripes.txt
+Designs
+input size = 1897
+run
+design count = 221490
+start at Thu Jul 11 17:42:35 2019
+end at Thu Jul 11 17:42:35 2019
+elapsed 0.323782 seconds for computing 3 stripes
+```
+
+
+
+
+
+
