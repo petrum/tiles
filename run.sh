@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./tiles 2 8
+./tiles 11 30 > /dev/null
