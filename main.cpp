@@ -12,7 +12,7 @@ struct Stripe
     void pop();
     bool push3();
     bool full() const { return len == v.size(); }
-    std::deque<int> row;
+    std::vector<int> row;
     std::vector<int> v;
     int len = 0;
 };
