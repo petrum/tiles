@@ -60,7 +60,7 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 
 void Tiles::run()
 {
-        
+    
 }
 
 int main(int argc, char* argv[])
