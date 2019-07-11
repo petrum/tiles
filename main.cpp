@@ -1,107 +1,165 @@
-#include <vector>
 #include <iostream>
-#include <bitset>
+#include <vector>
+#include <deque>
 #include <cassert>
-#include <chrono>
-#include <ctime>
-
-// $> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs && ./designs 7 < stripes.txt
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
-struct Designs
+struct Stripe
 {
-    Designs(int s);
-    void load();
-    void run();
-    void solve(int i);
-private:
-    const int stripes;
+    Stripe(int l) : v(l) {}
+    bool push2();
+    void pop();
+    bool push3();
+    bool full() const { return len == v.size(); }
+    std::vector<int> row;
     std::vector<int> v;
-    typedef std::vector<int> TDesigns;
-    TDesigns d;
-    std::size_t count = 0;
-    friend std::ostream& operator <<(std::ostream& o, const Designs::TDesigns& design);
+    std::size_t len = 0;
 };
 
-std::ostream& operator <<(std::ostream& o, const Designs::TDesigns& d)
+std::ostream& operator <<(std::ostream& o, const Stripe& s)
 {
-    for (int i: d)
+    o << "len = " << s.len << ", row = [";
+    for (auto i: s.row)
     {
-        std::cout << "\t- " << i << " " << std::bitset<30>(i).to_string() << std::endl;
+        o << i << ", ";
+    }
+    o << "], v = [";
+    for (auto i: s.v)
+    {
+        o << i;
+    }
+    o << "]";
+    return o;
+}
+
+bool Stripe::push2()
+{
+    LOG;
+    if (len + 2 > v.size())
+        return false;
+    row.push_back(2);
+    v[len++] = 0;
+    v[len++] = 1;
+    return true;
+}
+
+void Stripe::pop()
+{
+    LOG;
+    int i = row.back();
+    row.pop_back();
+    len -= i;
+    std::cerr << *this << std::endl;
+}
+
+bool Stripe::push3()
+{
+    LOG;
+    if (len + 3 > v.size())
+        return false;
+    row.push_back(3);
+    v[len++] = 0;
+    v[len++] = 1;    
+    v[len++] = 2;
+    return true;
+}
+
+struct Tiles
+{
+    Tiles(int, int);
+    void run();
+    int getDesignCount() const {return designCount; }
+    bool isValid() const;
+    void solve();
+private:
+    void solve2();
+    int rows;
+    int length;
+    int designCount = 0;
+    std::vector<Stripe> stripes;
+    std::size_t crtRow = 0;
+    friend std::ostream& operator <<(std::ostream& o, const Tiles& t);
+};
+
+std::ostream& operator <<(std::ostream& o, const Tiles& t)
+{
+    o << "rows = " << t.rows << ", length = " << t.length << ", designCount = " << t.designCount << ", crtRow = " << t.crtRow;
+    for (const auto& s: t.stripes)
+    {
+        o << "\n\t" << s;
     }
     return o;
 }
 
-Designs::Designs(int s) : stripes(s), d(s)
+bool Tiles::isValid() const
 {
     LOG;
+    if (crtRow == 0)
+        return true;
+    const Stripe& s2 = stripes[crtRow];
+    const Stripe& s1 = stripes[crtRow - 1];
+    assert (s1.full());
+    if (s2.full())
+        return true;
+    return s1.v[s2.len] != 0; 
 }
 
-void Designs::load()
+Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 {
-	int n;
-	while(std::cin >> n)
-	{
-	  	v.push_back(n);
-		std::string s;
-		std::cin >> s;
-	}
-	std::cerr << "input size = " << v.size() << "\n";
 }
 
-void Designs::run()
+void Tiles::solve()
+{
+    int crtRowTmp = crtRow;
+    solve2();
+    crtRow = crtRowTmp;
+}
+
+void Tiles::solve2()
 {
     LOG;
-    int n = 0;
-    for (std::size_t i = 0; i != v.size(); ++i)
+    std::cerr << *this << std::endl;
     {
-        d[0] = v[i];
-        solve(n + 1);
+        Stripe& s = stripes[crtRow];
+        if (s.full() && (crtRow == stripes.size() - 1))
+        {
+            //std::cout << "Found design:\n" << *this << std::endl;
+            ++designCount;
+            return;
+        }
+        if (s.full())
+            ++crtRow;
     }
-	std::cerr << "design count = " << count << "\n";    
+
+    Stripe& s = stripes[crtRow]; 
+    if (s.push2())
+    {
+        if (isValid())
+            solve();
+        s.pop();
+    }
+    if (s.push3())
+    {
+        if (isValid())
+            solve();
+        s.pop();
+    }
 }
 
-void Designs::solve(int n)
+void Tiles::run()
 {
-    //std::cerr << n << " ";
-    //LOG;
-    if (n >= stripes)
-    {
-        ++count;
-        if (count % 1000000 == 0)
-        {
-            //std::cout << "- design " << count << ":\n" << d << "\n";
-            std::cout << "- design " << count << "\n";
-        }
-        return;
-    }
-
-    for (std::size_t i = 0; i != v.size(); ++i)
-    {
-        int x = v[i];
-        if ((d[n - 1] & x) == 0b100000000000000000000000000000)
-        {
-            d[n] = x;
-            solve(n + 1);
-        }
-    }
+    LOG;
+    solve();
 }
 
 int main(int argc, char* argv[])
 {
-    auto start = std::chrono::system_clock::now();
-    std::time_t start_time = std::chrono::system_clock::to_time_t(start);
-    assert(argc == 2);
-    int stripes = std::stoi(argv[1]);
-    Designs d(stripes);
-    d.load();
-    d.run();
-    auto end = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end - start;
-    std::time_t end_time = std::chrono::system_clock::to_time_t(end);   
-    std::cout << "start at " << std::ctime(&start_time);
-    std::cout << "end at " << std::ctime(&end_time);
-    std::cout << "elapsed " << elapsed_seconds.count() << " seconds for computing " << stripes << " stripes\n";
-	return 0;
+    assert(argc == 3);
+    int rows = std::stoi(argv[1]), length = std::stoi(argv[2]);
+    assert (rows > 0 && length > 1);
+    Tiles tiles(rows, length);
+    tiles.run();
+    std::cout << "There were " << tiles.getDesignCount() << " designs for " << rows << " x " << length << " room." << std::endl;
+    return 0;
 }
