@@ -72,29 +72,34 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 
 void Tiles::solve()
 {
-    if (stripes[crtRow].full())
     {
-        if (crtRow == stripes.size() - 1)
+        Stripe& s = stripes[crtRow];
+        if (s.full() && (crtRow == stripes.size() - 1))
         {
-            std::cerr << "Found one\n";
+            std::cerr << "Found design\n";
             ++designCount;
             return;
         }
-        ++crtRow;
+        if (s.full())
+            ++crtRow;
     }
+
     Stripe& s = stripes[crtRow];
+    int crtRowTmp = crtRow;     
     if (s.push2())
     {
         if (isValid())
             solve();
         s.pop();
     }
+    crtRow = crtRowTmp;
     if (s.push3())
     {
         if (isValid())
             solve();
         s.pop();
     }
+    crtRow = crtRowTmp;
 }
 
 void Tiles::run()
