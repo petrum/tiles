@@ -14,7 +14,7 @@ private:
     std::vector<std::stack<int>> data;
 };
 
-Tiles::Tiles(int s, int l) : stripes(s), length(l) 
+Tiles::Tiles(int s, int l) : stripes(s), length(l), data(s)
 {
 }
 
