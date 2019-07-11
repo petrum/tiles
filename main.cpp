@@ -74,7 +74,7 @@ void Tiles::solve()
 {
     if (stripes[crtRow].full())
     {
-        if (crtRow == stripes.size())
+        if (crtRow == stripes.size() - 1)
         {
             std::cerr << "Found one\n";
             ++designCount;
