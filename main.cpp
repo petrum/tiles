@@ -3,8 +3,11 @@
 struct Tiles
 {
     Tiles(int s, int l) : stripes(s), length(l) {}
+
+private:
     int stripes;
     int length;
+    int designCount = 0;
 };
 
 int main(int argc, char* argv[])
