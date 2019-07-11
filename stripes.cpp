@@ -1,6 +1,9 @@
 #include <iostream>
 #include <bitset>
 
+// $> g++ stripes.cpp -Wall -Wextra -o stripes && ./stripes | wc -l
+// 1897
+
 int main()
 {
         int MASK000 = 0b111111111111111111111111111000;
