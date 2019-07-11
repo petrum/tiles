@@ -19,7 +19,7 @@
 * the first bit on tile is "1", the rest are "0"
 * this will let us compare 2 stripes for edges in s single bitewise "&" operation
 * much more faster (+100 times)
-* it finds about 1 million designed per second
+* it finds about 1 million designs per second
 
 stripes	| designs | 	sec     | 	min	| actual
 ------- | --------|------------|------|--------
