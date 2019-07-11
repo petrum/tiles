@@ -10,8 +10,6 @@ struct Stripe
     void pop();
     bool push3();
     bool fool() const { return len == v.size(); }
-    int getLen() const { return len; }
-private:
     std::stack<int> row;
     std::vector<int> v;
     int len = 0;
@@ -63,7 +61,8 @@ bool Tiles::isValid() const
         return true;
     const Stripe& s2 = stripes[crtRow];
     const Stripe& s1 = stripes[crtRow - 1];
-    assert (s1.getLen() == length);
+    assert (s1.fool());
+    return s1.v[s2.len] != 0;
 }
 
 Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
