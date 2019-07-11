@@ -4,7 +4,7 @@
 
 struct Tiles
 {
-    Tiles(int s, int l) : stripes(s), length(l) {}
+    Tiles(int, int);
     void design();
     int getDesignCount() const {return designCount; }
 private:
@@ -13,6 +13,10 @@ private:
     int designCount = 0;
     std::vector<std::stack<int>> data;
 };
+
+Tiles::Tiles(int s, int l) : stripes(s), length(l) 
+{
+}
 
 void Tiles::design()
 {
