@@ -26,3 +26,6 @@ stripes	| designs | 	sec     | 	min	| actual
 9 	    | 		       	|         |         | 
 10 	    | 		       	|         |         | 
 11 	    | 		       	|         |         | 
+
+* it seems it increases by a factor of 15
+* this estimates that it will solve the stripes = 11 in 17 years!
