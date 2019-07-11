@@ -1,1 +1,1 @@
-g++ main.cpp -o tiles -DDEBUG -g
+g++ main.cpp -o tiles -DDEBUG -g -Wall -Wextra

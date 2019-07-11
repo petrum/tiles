@@ -40,6 +40,7 @@ bool Stripe::push2()
     row.push_back(2);
     v[len++] = 0;
     v[len++] = 1;
+    return true;
 }
 
 void Stripe::pop()
@@ -60,6 +61,7 @@ bool Stripe::push3()
     v[len++] = 0;
     v[len++] = 1;    
     v[len++] = 2;
+    return true;
 }
 
 struct Tiles
