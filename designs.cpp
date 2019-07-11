@@ -62,7 +62,7 @@ void Designs::solve(int n)
 {
     //std::cerr << n << " ";
     //LOG;
-    if (n >= 12)
+    if (n >= 11)
     {
         ++count;
         if (count % 1000000 == 0)
