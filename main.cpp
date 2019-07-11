@@ -47,6 +47,7 @@ struct Tiles
     void run();
     int getDesignCount() const {return designCount; }
     bool isValid() const;
+    void solve();
 private:
     int rows;
     int length;
@@ -69,10 +70,35 @@ Tiles::Tiles(int r, int l) : rows(r), length(l), stripes(r, l)
 {
 }
 
+void Tiles::solve()
+{
+    if (stripes[crtRow].full())
+    {
+        if (crtRow == stripes.size())
+        {
+            ++designCount;
+            return;
+        }
+        ++crtRow;
+    }
+    Stripe& s = stripes[crtRow];
+    if (s.push2())
+    {
+        if (isValid())
+            solve();
+        s.pop();
+    }
+    if (s.push3())
+    {
+        if (isValid())
+            solve();
+        s.pop();
+    }
+}
 
 void Tiles::run()
 {
-    //advance();
+    solve();
 }
 
 int main(int argc, char* argv[])
