@@ -33,8 +33,10 @@ stripes	| designs | 	sec     | 	min	| actual
 ## comparing results
 
 Comparing results for the two approaches produces the same number of results:
-### Brute force
+### Brute force approach
 ```
+$> ./build.sh
+
 $> ./tiles 1 30 2>/dev/null
 There were 1897 designs for 1 x 30 room.
 
@@ -45,9 +47,11 @@ $> ./tiles 3 30 2>/dev/null
 There were 221490 designs for 3 x 30 room.
 
 ```
-### Customized
+### Customized/fast approach
 ```
-g++ designs.cpp -std=c++11 -Wall -Wextra -o designs && ./designs 1 < stripes.txt
+$> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs
+
+$> ./designs 1 < stripes.txt
 Designs
 input size = 1897
 run
