@@ -53,7 +53,6 @@ There were 17282 designs for 2 x 30 room.
 
 $> ./tiles 3 30 2>/dev/null
 There were 221490 designs for 3 x 30 room.
-
 ```
 ### Customized/fast approach
 ```
