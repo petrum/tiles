@@ -17,7 +17,7 @@
 * we encode each stripe as an int (30 bits)
 * a tile with len = 2 takes 2 bits, len = 3 takes 3 bits
 * the first bit on tile is "1", the rest are "0"
-* this will let us compare 2 stripes for edges in s single bitewise "&" operation
+* this will let us compare 2 stripes for edges in a single bitewise "&" operation
 * much more faster than the generic approach (+100 times)
 * it finds about 1 million designs per second
 
