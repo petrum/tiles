@@ -9,15 +9,15 @@
 * it is very slow
 
 ## customized approach
-* instead of solving all the problems, we try to solve the ```length = 30``` specific problem.
+* instead of solving generically this problems, we only try to solve the ```length = 30``` specific problem.
 * we can still customize on the stripes number
-* we first generate all the possible stripes with ```length = 30``` (1897 x stripes)
-* the ```stripes.cpp``` does this, see the result in ```stripes.txt```
-* then the ```designs.cpp``` takes this data, and tries to stack them together
-* we encode each stripe as an int (30 bits)
-* a tile with len = 2 takes 2 bits, len = 3 takes 3 bits
-* the first bit on tile is "1", the rest are "0"
-* this will let us compare 2 stripes for edges in a single bitewise "&" operation
+* we first generate all the possible stripes with ```length = 30```
+* the ```stripes.cpp``` does this, see the result in ```stripes.txt``` (1897 x stripes)
+* then the ```designs.cpp``` uses this data, and tries to stack the stripes together
+* we encode each stripe as an int (30 bits == stripe's length)
+* a tile with len = 2 takes 2 x bits, the one with len = 3 takes 3 x bits
+* the first bit in a tile is always ```1```, the rest of bits are ```0```
+* this will let us compare 2 stripes for the edges rule in a single bitewise ```&``` operation
 * much more faster than the generic approach (+100 times)
 * it finds about 1 million designs per second
 
@@ -35,8 +35,10 @@ stripes	| designs | 	sec     | 	min	| days
 10 	    | 		       	|         |         | 
 11 	    | 		       	|         |         | 
 
-* it seems it increases by a factor of 15
+* it seems it increases by a factor of 15 for each extra stripe
 * this estimates that it will solve the stripes = 11 in 17 years!
+
+(please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
 ## Comparing results
 
