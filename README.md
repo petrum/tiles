@@ -5,7 +5,7 @@
 * ```main.cpp``` tries to solve the problem in a generic way
 * we parameterize both ```stripes``` and the ```length```
 * the implementation is similar with placing each tile individually
-* as we place then we check size, and the edges to the previous stripe
+* as we place them, we check the size of the stripe, and check the edges to the previous stripe
 * it is very slow
 
 ## customized approach
@@ -15,9 +15,9 @@
 * the ```stripes.cpp``` does this, see the result in ```stripes.txt``` (1897 x stripes)
 * then the ```designs.cpp``` uses this data, and tries to stack the stripes together
 * we encode each stripe as an int (30 bits == stripe's length)
-* a tile with len = 2 takes 2 x bits, the one with len = 3 takes 3 x bits
+* a tile with len = 2 will take 2 x bits, the one with len = 3 takes 3 x bits
 * the first bit in a tile is always ```1```, the rest of bits are ```0```
-* this will let us compare 2 stripes for the edges rule in a single bitewise ```&``` operation
+* this will let us compare 2 stripes for the edges rule in a single bitewise ```&``` operation (very fast)
 * example of design:
 ```
 - design 0:
@@ -33,13 +33,13 @@
 	- 690262602 101001001001001001001001001010
 	- 613566756 100100100100100100100100100100
 ```
-* much more faster than the generic approach (+100 times)
+* much more faster than the generic approach (+350 x faster)
 * it finds about 1 million designs per second
 
 stripes	| designs | 	sec     | 	min	| days
 ------- | --------|------------|------|--------
 1 	    |  1,897  | 	 0.0043	|  0.00 | 	 
-2 	    |  17,282 | 	0.036 	|  0.00 	|  
+2 	    |  17,282 | 	0.0368 	|  0.00 	|  
 3 	    |  221,490 |  0.324  	|  0.00 	|  
 4 	    |  3,025,552 	|  3.957 |  0.08 	|  
 5 	    |  47,054,902 | 53.77 | 	 0.88| 
