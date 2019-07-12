@@ -2,7 +2,7 @@
 
 
 ## brute force
-* ```main.cpp``` tries to solve the problem brute-force in a generic way
+* ```main.cpp``` tries to solve the problem in a generic way
 * we parameterize both ```stripes``` and the ```length```
 * the implementation is similar with placing each tile individually
 * as we place then we check size, and the edges to the previous stripe
