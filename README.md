@@ -39,7 +39,11 @@
 
 ## fast approach
 
-The ```fastdesigns.cpp`` file has the final solution.
+ 
+* The ```fastdesigns.cpp``` file has the final solution.
+* for each of the 1897 stripes it precomputes what are the compatible stripes (that could follow next after this stripe) 
+* now we do not have to check if the edges matches, we just stack them together
+* the result is 100x times faster than the customized solution
 
 stripes	| designs | 	Brute force    	| customized | fast
 ------- | --------|------------|---------|----
@@ -76,7 +80,7 @@ There were 17282 designs for 2 x 30 room.
 $> ./tiles 3 30 2>/dev/null
 There were 221490 designs for 3 x 30 room.
 ```
-### Customized/fast approach
+### Customized approach
 ```
 $> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs
 
