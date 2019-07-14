@@ -1,6 +1,47 @@
 #include <vector>
 #include <iostream>
 
+#define LOG std::cerr << __FUNCTION__ << std::endl
+
+struct Designs
+{
+    Designs(int s);
+    void load();
+    void run();
+private:
+    const int stripes;
+    std::vector<int> v;
+};
+
+Designs::Designs(int s) : stripes(s), d(s)
+{
+    LOG;
+}
+
+void Designs::load()
+{
+	int n;
+	while(std::cin >> n)
+	{
+	  	v.push_back(n);
+		std::string s;
+		std::cin >> s;
+	}
+	std::cerr << "input size = " << v.size() << "\n";
+}
+
+void Designs::run()
+{
+    LOG;
+    int n = 0;
+    for (std::size_t i = 0; i != v.size(); ++i)
+    {
+        d[0] = v[i];
+        solve(n + 1);
+    }
+	std::cerr << "design count = " << count << "\n";    
+}
+
 int main(int argc, char* argv[])
 {
     auto start = std::chrono::system_clock::now();
