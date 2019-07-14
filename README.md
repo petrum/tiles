@@ -42,7 +42,7 @@
 The ```fastdesigns.cpp`` file has the final solution.
 
 stripes	| designs | 	customized    	| brute force | fast
-------- | --------|------------|------|--------|----
+------- | --------|------------|---------|----
 1 	    |  1,897  | 	 0.0043	| 	1 sec |
 2 	    |  17,282 | 	0.0368 	|  8 sec |
 3 	    |  221,490 |  0.324  		|  60 sec |
