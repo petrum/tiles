@@ -13,13 +13,20 @@ struct Designs
     Designs(int s);
     void load();
     void run();
+    void setCompatible();
 private:
     const int stripes;
     std::vector<int> v;
+    std::vector<std::vector<int>> compatible;  
     std::size_t count = 0;
 };
 
 Designs::Designs(int s) : stripes(s)
+{
+    LOG;
+}
+
+void Designs::setCompatible()
 {
     LOG;
 }
@@ -50,6 +57,7 @@ int main(int argc, char* argv[])
     int stripes = std::stoi(argv[1]);
     Designs d(stripes);
     d.load();
+    d.setCompatible();
     d.run();
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
