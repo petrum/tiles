@@ -7,8 +7,9 @@
 // $> ./dp-designs 7 < stripes.txt
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
-typedef std::size_t NUMBER;
 
+typedef std::size_t NUMBER;
+const NUMBER NA = -1;
 struct Designs
 {
     Designs(int s);
@@ -27,6 +28,11 @@ private:
 Designs::Designs(int s) : stripes(s)
 {
     LOG;
+    for (std::size_t i = 0; i != 1897; ++i)
+    {
+        std::vector<NUMBER> v = std::vector<NUMBER>(15, NA);
+        cache.push_back(v);
+    }
 }
 
 void Designs::setCompatible()
@@ -67,6 +73,8 @@ NUMBER Designs::solve(int i, int level)
         ++count;
         return 0;
     }
+    //if 
+
     NUMBER sum = 0;
     for (auto n: compatible[i])
     {
