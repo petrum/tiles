@@ -83,6 +83,9 @@ stripes	| designs | 	brute force    	| customized | fast
 
 max size_t = 18,446,744,073,709,551,615
 
+The ```long long``` counter overflows at stripes = 15.
+A double can be used instead.
+
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
 ## Comparing results
