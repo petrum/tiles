@@ -45,7 +45,7 @@
 * now we do not have to check if the edges matches, we just stack them together
 * the result is 100x times faster than the customized solution
 
-stripes	| designs | 	Brute force    	| customized | fast
+stripes	| designs | 	brute force    	| customized | fast
 ------- | --------|------------|---------|----
 1 	    |  1,897  | 1 |	 0.0043	 |
 2 	    |  17,282 | 8|	0.0368  |
