@@ -17,7 +17,7 @@ struct Designs
     Designs(int s);
     void load();
     void run();    
-    NUMBER solve(int i, int level);
+    NUMBER stackDesigns(int i, int level);
     void setCompatible();
     void showCache() const;
 private:
@@ -81,27 +81,41 @@ void Designs::load()
         cache.push_back(v);
     }
 }
+/*
 
-NUMBER Designs::solve(int i, int level)
++--------------------------+------
+|                          |   ^
++--------------------------+   |
+|                          |   | height
++--------------------------+   |
+|                          |   V
++--------------------------+-------
+|            i             |
++--------------------------+
+
+The stackDesigns() returns how many desings of 'height' can be stack on top of the stripe 'i'
+
+ */
+NUMBER Designs::stackDesigns(int i, int heigth)
 {
     //LOG;
     //std::cerr << "i = " << i << ", level = " << level << "\n";
-    if (level == 0)
+    if (heigth == 0)
     {
         return 1;
     }
-    if (level == 1)
+    if (heigth == 1)
     {
         return compatible[i].size();
     }
-    NUMBER& ret = cache[i][level - 1];
+    NUMBER& ret = cache[i][heigth - 1];
     //std::cerr << "ret1 = " << ret << "\n";
     if (ret != NA)
         return ret;
     ret = 0;
     for (auto n: compatible[i])
     {
-        ret += solve(n, level - 1);
+        ret += stackDesigns(n, heigth - 1);
     }
     //std::cerr << "ret2 = " << ret << "\n";
     return ret;
@@ -113,7 +127,7 @@ void Designs::run()
     NUMBER ret = 0;
     for (size_t i = 0; i != v.size(); ++i)
     {
-        ret += solve(i, stripes - 1);
+        ret += stackDesigns(i, stripes - 1);
     }
 	std::cerr << "design count = " << ret << "\n";    
 }
