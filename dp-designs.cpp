@@ -73,14 +73,15 @@ NUMBER Designs::solve(int i, int level)
         ++count;
         return 0;
     }
-    //if 
+    NUMBER& ret = cache[i][level -1];
+    if (ret != NA)
+        return ret;
 
-    NUMBER sum = 0;
     for (auto n: compatible[i])
     {
-        sum += solve(n, level - 1);
+        ret += solve(n, level - 1);
     }
-    return sum;
+    return ret;
 }
 
 void Designs::run()
