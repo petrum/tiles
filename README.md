@@ -45,6 +45,12 @@
 * now we do not have to check if the edges matches, we just stack them together
 * the result is 100x times faster than the customized solution
 
+## introducing dynamic programming
+* we add a cache that saves the intermediate problems
+* now instead of incrementing a variable, we add the result of a subproblem
+* the results are instant for any number of stripes!
+
+Example 14 stripes:
 ```
 petrum@xps13 /mnt/c/tiles [master]$ ./dp-designs 14 < stripes.txt
 start at Sun Jul 14 13:22:32 2019
@@ -58,11 +64,6 @@ start at Sun Jul 14 13:22:32 2019
 end at Sun Jul 14 13:22:32 2019
 elapsed 0.0991009 seconds for computing 14 stripes
 ```
-## introducing dynamic programming
-* we add a cache that saves the intermediate problems
-* now instead of incrementing a variable, we add the result of a subproblem
-* the results are instant for any number of stripes!
-
 stripes	| designs | 	brute force    	| customized | fast
 ------- | --------|------------|---------|----
 1 	    |  1,897  | 1 |	 0.0043	 |
