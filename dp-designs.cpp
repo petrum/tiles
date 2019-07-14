@@ -8,8 +8,9 @@
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
-typedef std::size_t NUMBER;
+typedef double NUMBER;
 const NUMBER NA = -1;
+
 struct Designs
 {
     Designs(int s);
@@ -17,12 +18,26 @@ struct Designs
     void run();    
     NUMBER solve(int i, int level);
     void setCompatible();
+    void showCache() const;
 private:
     const int stripes;
     std::vector<int> v;
     std::vector<std::vector<int>> compatible;  
     std::vector<std::vector<NUMBER>> cache;
 };
+
+void Designs::showCache() const
+{
+    std::size_t i = 0;
+    for (auto& v: cache)
+    {
+        std::cerr << "cache[" << i << "] = ";
+        for (auto d: v)
+            std::cerr << d << ", ";
+        std::cerr << "\n";
+        ++i;
+    }
+}
 
 Designs::Designs(int s) : stripes(s)
 {
@@ -69,18 +84,20 @@ NUMBER Designs::solve(int i, int level)
 {
     //LOG;
     //std::cerr << "i = " << i << ", level = " << level << "\n";
-    if (level == 0)
+    if (level == 1)
     {
-        return 0;
+        return compatible[i].size();
     }
-    NUMBER& ret = cache[i][level -1];
-    if (ret != NA)
+    NUMBER& ret = cache[i][level - 1];
+    //std::cerr << "ret1 = " << ret << "\n";
+    if (ret > .5)
         return ret;
     ret = 0;
     for (auto n: compatible[i])
     {
         ret += solve(n, level - 1);
     }
+    //std::cerr << "ret2 = " << ret << "\n";
     return ret;
 }
 
@@ -106,6 +123,7 @@ int main(int argc, char* argv[])
     d.load();
     d.setCompatible();
     d.run();
+    //d.showCache();
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end - start;
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);   
