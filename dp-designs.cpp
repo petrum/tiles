@@ -94,7 +94,7 @@ NUMBER Designs::solve(int i, int level)
     }
     NUMBER& ret = cache[i][level - 1];
     //std::cerr << "ret1 = " << ret << "\n";
-    if (ret == NA)
+    if (ret != NA)
         return ret;
     ret = 0;
     for (auto n: compatible[i])
