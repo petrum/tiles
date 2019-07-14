@@ -1,5 +1,8 @@
 #include <vector>
 #include <iostream>
+#include <chrono>
+#include <ctime>
+#include <cassert>
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
@@ -11,9 +14,10 @@ struct Designs
 private:
     const int stripes;
     std::vector<int> v;
+    std::size_t count = 0;
 };
 
-Designs::Designs(int s) : stripes(s), d(s)
+Designs::Designs(int s) : stripes(s)
 {
     LOG;
 }
@@ -33,12 +37,6 @@ void Designs::load()
 void Designs::run()
 {
     LOG;
-    int n = 0;
-    for (std::size_t i = 0; i != v.size(); ++i)
-    {
-        d[0] = v[i];
-        solve(n + 1);
-    }
 	std::cerr << "design count = " << count << "\n";    
 }
 
