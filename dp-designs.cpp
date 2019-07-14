@@ -22,7 +22,6 @@ private:
     std::vector<int> v;
     std::vector<std::vector<int>> compatible;  
     std::vector<std::vector<NUMBER>> cache;
-    NUMBER count;
 };
 
 Designs::Designs(int s) : stripes(s)
@@ -70,13 +69,12 @@ NUMBER Designs::solve(int i, int level)
 {
     if (level == 0)
     {
-        ++count;
         return 0;
     }
     NUMBER& ret = cache[i][level -1];
     if (ret != NA)
         return ret;
-
+    ret = 0;
     for (auto n: compatible[i])
     {
         ret += solve(n, level - 1);
@@ -87,11 +85,12 @@ NUMBER Designs::solve(int i, int level)
 void Designs::run()
 {
     LOG;
+    NUMBER ret = 0;
     for (size_t i = 0; i != v.size(); ++i)
     {
-        solve(i, stripes - 1);
+        ret += solve(i, stripes - 1);
     }
-	std::cerr << "design count = " << count << "\n";    
+	std::cerr << "design count = " << ret << "\n";    
 }
 
 int main(int argc, char* argv[])
