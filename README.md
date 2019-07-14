@@ -54,10 +54,10 @@ stripes	| designs | 	Brute force    	| customized | fast
 5 	    |  47,054,902 | N/A | 53.77  | 0.793
 6 	    |  727,476,474 | N/A | 831.729	 | 11.6
 7 	    | 12,197,221,792 |  N/A |   12814   | 190
-8 	    | 		       	|     N/A | |
-9 	    | 		       	|     N/A | |
-10 	    | 		       	|     N/A | |
-11 	    | 		       	|     N/A | |
+8 	    | 		       	|     N/A | N/A  |
+9 	    | 		       	|     N/A | N/A  |
+10 	    | 		       	|     N/A | N/A  |
+11 	    | 		       	|     N/A | N/A  |
 
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
