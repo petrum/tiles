@@ -55,6 +55,7 @@ void Designs::setCompatible()
 
 void Designs::load()
 {
+    LOG;
 	int n;
 	while(std::cin >> n)
 	{
@@ -67,6 +68,8 @@ void Designs::load()
 
 NUMBER Designs::solve(int i, int level)
 {
+    LOG;
+    std::cerr << "i = " << i << ", level = " << level << "\n";
     if (level == 0)
     {
         return 0;
