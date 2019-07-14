@@ -29,6 +29,20 @@ Designs::Designs(int s) : stripes(s)
 void Designs::setCompatible()
 {
     LOG;
+    for (std::size_t i = 0; i != v.size(); ++i)
+    {
+        std::vector<int> c;
+        int s = v[i];
+        for (auto j: v)
+        {
+            if ((s & j) == 0b100000000000000000000000000000)
+            {
+                c.push_back(j);
+            }
+        }
+       compatible.push_back(c);
+       //std::cerr << "the stripe = " << s << " is compatible with " << c.size() << " other stripes\n";
+    }
 }
 
 void Designs::load()
