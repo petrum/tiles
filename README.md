@@ -41,7 +41,7 @@
 
  
 * The ```fastdesigns.cpp``` file has the final solution.
-* for each of the 1897 stripes it precomputes what are the compatible stripes (that could follow next after this stripe) 
+* for each of the 1897 stripes it precomputes the compatible stripes (that could follow next after this stripe) 
 * now we do not have to check if the edges matches, we just stack them together
 * the result is 100x times faster than the customized solution
 
