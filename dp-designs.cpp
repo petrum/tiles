@@ -50,7 +50,6 @@ void Designs::setCompatible()
        compatible.push_back(c);
        //std::cerr << "the stripe = " << s << " is compatible with " << c.size() << " other stripes\n";
     }
-    LOG;
 }
 
 void Designs::load()
@@ -68,8 +67,8 @@ void Designs::load()
 
 NUMBER Designs::solve(int i, int level)
 {
-    LOG;
-    std::cerr << "i = " << i << ", level = " << level << "\n";
+    //LOG;
+    //std::cerr << "i = " << i << ", level = " << level << "\n";
     if (level == 0)
     {
         return 0;
