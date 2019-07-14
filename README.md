@@ -37,19 +37,23 @@
 * much more faster than the generic approach (+350 x faster)
 * it finds about 1 million designs per second
 
-stripes	| designs | 	sec     | 	min	| brute force | fast
+## fast approach
+
+The ```fastdesigns.cpp`` file has the final solution.
+
+stripes	| designs | 	customized    	| brute force | fast
 ------- | --------|------------|------|--------|----
-1 	    |  1,897  | 	 0.0043	|  0.00 | 	1 sec 
-2 	    |  17,282 | 	0.0368 	|  0.00 	|  8 sec
-3 	    |  221,490 |  0.324  	|  0.00 	|  60 sec
-4 	    |  3,025,552 	|  3.957 |  0.08 	|  N/A | 0.273
-5 	    |  47,054,902 | 53.77 | 	 0.88| N/A | 2.494
-6 	    |  727,476,474 | 831.729 |  13.85 	|  N/A | 28.68
-7 	    | 12,197,221,792 |    12814     |   3.5h      |  N/A |
-8 	    | 		       	|         |         |   N/A |
-9 	    | 		       	|         |         |   N/A |
-10 	    | 		       	|         |         |   N/A |
-11 	    | 		       	|         |         |   N/A |
+1 	    |  1,897  | 	 0.0043	| 	1 sec |
+2 	    |  17,282 | 	0.0368 	|  8 sec |
+3 	    |  221,490 |  0.324  		|  60 sec |
+4 	    |  3,025,552 	|  3.957 	|  N/A | 0.0865
+5 	    |  47,054,902 | 53.77| N/A | 0.793
+6 	    |  727,476,474 | 831.729	|  N/A | 11.6
+7 	    | 12,197,221,792 |    12814       |  N/A |
+8 	    | 		       	|             |   N/A |
+9 	    | 		       	|             |   N/A |
+10 	    | 		       	|            |   N/A |
+11 	    | 		       	|               |   N/A |
 
 * it seems it increases by a factor of 15 for each extra stripe
 * this estimates that it will solve the stripes = 11 in 17 years!
