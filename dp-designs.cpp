@@ -4,22 +4,24 @@
 #include <ctime>
 #include <cassert>
 
-// $> ./fastdesigns 7 < stripes.txt
+// $> ./dp-designs 7 < stripes.txt
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
+typedef std::size_t NUMBER;
 
 struct Designs
 {
     Designs(int s);
     void load();
     void run();    
-    void solve(int i, int level);
+    NUMBER solve(int i, int level);
     void setCompatible();
 private:
     const int stripes;
     std::vector<int> v;
     std::vector<std::vector<int>> compatible;  
-    std::size_t count = 0;
+    std::vector<std::vector<NUMBER>> cache;
+    NUMBER count;
 };
 
 Designs::Designs(int s) : stripes(s)
@@ -58,17 +60,19 @@ void Designs::load()
 	std::cerr << "input size = " << v.size() << "\n";
 }
 
-void Designs::solve(int i, int level)
+NUMBER Designs::solve(int i, int level)
 {
     if (level == 0)
     {
         ++count;
-        return;
+        return 0;
     }
+    NUMBER sum = 0;
     for (auto n: compatible[i])
     {
-        solve(n, level - 1);
+        sum += solve(n, level - 1);
     }
+    return sum;
 }
 
 void Designs::run()
