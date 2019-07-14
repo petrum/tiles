@@ -21,7 +21,7 @@
 * example of design:
 ```
 - design 0:
-                    |3 |3 |3 |3 |3 |3 |3 |3 |3 |2
+                    |3 |3 |3 |3 |3 |3 |3 |3 |3 |3
 	- 613566756 100100100100100100100100100100
 	- 690262602 101001001001001001001001001010
 	- 613566756 100100100100100100100100100100
@@ -45,25 +45,27 @@
 * now we do not have to check if the edges matches, we just stack them together
 * the result is 100x times faster than the customized solution
 
-stripes	| designs | 	Brute force    	| customized | fast
+stripes	| designs | 	brute force    	| customized | fast
 ------- | --------|------------|---------|----
 1 	    |  1,897  | 1 |	 0.0043	 |
 2 	    |  17,282 | 8|	0.0368  |
 3 	    |  221,490 | 60 |   0.324  | 
 4 	    |  3,025,552 	|  N/A | 3.957 | 0.0865
 5 	    |  47,054,902 | N/A | 53.77  | 0.793
-6 	    |  727,476,474 | N/A | 831.729	 | 11.6
-7 	    | 12,197,221,792 |  N/A |   12814   | 190
-8 	    | 		       	|     N/A | N/A  |
+6 	    |  727,476,474 | N/A | 831	 | 11.6
+7 	    | 12,197,221,792 |  N/A |   12,814   | 190
+8 	    | 197,913,291,570   	|     N/A | N/A  | 3,116
 9 	    | 		       	|     N/A | N/A  |
 10 	    | 		       	|     N/A | N/A  |
 11 	    | 		       	|     N/A | N/A  |
+
+max size_t = 18,446,744,073,709,551,615
 
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
 ## Comparing results
 
-Comparing results for the two approaches produces the same number of results: :-)
+Comparing results for the three approaches produces the same number of results: :-)
 ### Brute force approach
 ```
 $> ./build.sh
