@@ -81,9 +81,12 @@ stripes	| designs | 	brute force    	| customized | fast
 13 	    | 	302,089,555,859,830,370	       	|     N/A | N/A  | NA
 14 	    | 	5,088,301,462,723,893,518    	|     N/A | N/A  | NA
 
-max size_t = 18,446,744,073,709,551,615
-
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
+
+The max std::size_t = 18,446,744,073,709,551,615.
+
+The ```long long``` counter overflows at stripes = 15.
+A double can be used instead.
 
 ## Comparing results
 
