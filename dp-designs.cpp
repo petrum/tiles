@@ -9,6 +9,7 @@
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
 typedef long long NUMBER;
+//typedef double NUMBER;
 const NUMBER NA = -1;
 
 struct Designs
