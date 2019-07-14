@@ -59,6 +59,8 @@ stripes	| designs | 	brute force    	| customized | fast
 10 	    | 		       	|     N/A | N/A  |
 11 	    | 		       	|     N/A | N/A  |
 
+max size_t = 18,446,744,073,709,551,615
+
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
 ## Comparing results
