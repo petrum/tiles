@@ -84,6 +84,10 @@ NUMBER Designs::solve(int i, int level)
 {
     //LOG;
     //std::cerr << "i = " << i << ", level = " << level << "\n";
+    if (level == 0)
+    {
+        return 1;
+    }
     if (level == 1)
     {
         return compatible[i].size();
