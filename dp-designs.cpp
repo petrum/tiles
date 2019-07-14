@@ -42,11 +42,7 @@ void Designs::showCache() const
 Designs::Designs(int s) : stripes(s)
 {
     LOG;
-    for (std::size_t i = 0; i != 1897; ++i)
-    {
-        std::vector<NUMBER> v = std::vector<NUMBER>(15, NA);
-        cache.push_back(v);
-    }
+
 }
 
 void Designs::setCompatible()
@@ -78,6 +74,11 @@ void Designs::load()
 		std::cin >> s;
 	}
 	std::cerr << "input size = " << v.size() << "\n";
+    for (std::size_t i = 0; i != v.size(); ++i)
+    {
+        std::vector<NUMBER> v = std::vector<NUMBER>(stripes, NA);
+        cache.push_back(v);
+    }
 }
 
 NUMBER Designs::solve(int i, int level)
