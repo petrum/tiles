@@ -37,22 +37,27 @@
 * much more faster than the generic approach (+350 x faster)
 * it finds about 1 million designs per second
 
-stripes	| designs | 	sec     | 	min	| brute force
-------- | --------|------------|------|--------
-1 	    |  1,897  | 	 0.0043	|  0.00 | 	1 sec 
-2 	    |  17,282 | 	0.0368 	|  0.00 	|  8 sec
-3 	    |  221,490 |  0.324  	|  0.00 	|  60 sec
-4 	    |  3,025,552 	|  3.957 |  0.08 	|  
-5 	    |  47,054,902 | 53.77 | 	 0.88| 
-6 	    |  727,476,474 | 831.729 |  13.85 	|  
-7 	    | 12,197,221,792 |    12814     |   3.5h      |  
-8 	    | 		       	|         |         | 
-9 	    | 		       	|         |         | 
-10 	    | 		       	|         |         | 
-11 	    | 		       	|         |         | 
+## fast approach
 
-* it seems it increases by a factor of 15 for each extra stripe
-* this estimates that it will solve the stripes = 11 in 17 years!
+ 
+* The ```fastdesigns.cpp``` file has the final solution.
+* for each of the 1897 stripes it precomputes the compatible stripes (that could follow next after this stripe) 
+* now we do not have to check if the edges matches, we just stack them together
+* the result is 100x times faster than the customized solution
+
+stripes	| designs | 	Brute force    	| customized | fast
+------- | --------|------------|---------|----
+1 	    |  1,897  | 1 |	 0.0043	 |
+2 	    |  17,282 | 8|	0.0368  |
+3 	    |  221,490 | 60 |   0.324  | 
+4 	    |  3,025,552 	|  N/A | 3.957 | 0.0865
+5 	    |  47,054,902 | N/A | 53.77  | 0.793
+6 	    |  727,476,474 | N/A | 831.729	 | 11.6
+7 	    | 12,197,221,792 |  N/A |   12814   | 190
+8 	    | 		       	|     N/A | N/A  |
+9 	    | 		       	|     N/A | N/A  |
+10 	    | 		       	|     N/A | N/A  |
+11 	    | 		       	|     N/A | N/A  |
 
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
@@ -72,7 +77,7 @@ There were 17282 designs for 2 x 30 room.
 $> ./tiles 3 30 2>/dev/null
 There were 221490 designs for 3 x 30 room.
 ```
-### Customized/fast approach
+### Customized approach
 ```
 $> g++ designs.cpp -std=c++11 -Wall -Wextra -o designs
 
