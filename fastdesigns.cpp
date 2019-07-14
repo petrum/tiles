@@ -12,7 +12,8 @@ struct Designs
 {
     Designs(int s);
     void load();
-    void run();
+    void run();    
+    void solve(int i, int level);
     void setCompatible();
 private:
     const int stripes;
@@ -32,17 +33,17 @@ void Designs::setCompatible()
     for (std::size_t i = 0; i != v.size(); ++i)
     {
         std::vector<int> c;
-        int s = v[i];
-        for (auto j: v)
+        for (std::size_t n = 0; n != v.size(); ++n)
         {
-            if ((s & j) == 0b100000000000000000000000000000)
+            if ((v[i] & v[n]) == 0b100000000000000000000000000000)
             {
-                c.push_back(j);
+                c.push_back(n);
             }
         }
        compatible.push_back(c);
        //std::cerr << "the stripe = " << s << " is compatible with " << c.size() << " other stripes\n";
     }
+    LOG;
 }
 
 void Designs::load()
@@ -57,9 +58,26 @@ void Designs::load()
 	std::cerr << "input size = " << v.size() << "\n";
 }
 
+void Designs::solve(int i, int level)
+{
+    if (level == 0)
+    {
+        ++count;
+        return;
+    }
+    for (auto n: compatible[i])
+    {
+        solve(n, level - 1);
+    }
+}
+
 void Designs::run()
 {
     LOG;
+    for (size_t i = 0; i != v.size(); ++i)
+    {
+        solve(i, stripes - 1);
+    }
 	std::cerr << "design count = " << count << "\n";    
 }
 
