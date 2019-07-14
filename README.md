@@ -65,7 +65,7 @@ max size_t = 18,446,744,073,709,551,615
 
 ## Comparing results
 
-Comparing results for the two approaches produces the same number of results: :-)
+Comparing results for the three approaches produces the same number of results: :-)
 ### Brute force approach
 ```
 $> ./build.sh
