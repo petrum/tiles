@@ -8,7 +8,7 @@
 
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
-typedef double NUMBER;
+typedef long long NUMBER;
 const NUMBER NA = -1;
 
 struct Designs
@@ -94,7 +94,7 @@ NUMBER Designs::solve(int i, int level)
     }
     NUMBER& ret = cache[i][level - 1];
     //std::cerr << "ret1 = " << ret << "\n";
-    if (ret > .5)
+    if (ret == NA)
         return ret;
     ret = 0;
     for (auto n: compatible[i])
