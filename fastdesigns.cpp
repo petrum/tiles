@@ -4,6 +4,8 @@
 #include <ctime>
 #include <cassert>
 
+// $> ./fastdesigns 7 < stripes.txt
+
 #define LOG std::cerr << __FUNCTION__ << std::endl
 
 struct Designs
