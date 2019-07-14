@@ -40,11 +40,30 @@
 ## fast approach
 
  
-* The ```fastdesigns.cpp``` file has the final solution.
+* The ```fastdesigns.cpp``` file is a faster solution.
 * for each of the 1897 stripes it precomputes the compatible stripes (that could follow next after this stripe) 
 * now we do not have to check if the edges matches, we just stack them together
 * the result is 100x times faster than the customized solution
 
+## introducing dynamic programming
+* we add a cache that saves the intermediate problems
+* now instead of incrementing a variable, we add the result of a subproblem
+* the results are instant for any number of stripes!
+
+Example 14 stripes:
+```
+petrum@xps13 /mnt/c/tiles [master]$ ./dp-designs 14 < stripes.txt
+start at Sun Jul 14 13:22:32 2019
+Designs
+load
+input size = 1897
+setCompatible
+run
+design count = 5088301462723893518
+start at Sun Jul 14 13:22:32 2019
+end at Sun Jul 14 13:22:32 2019
+elapsed 0.0991009 seconds for computing 14 stripes
+```
 stripes	| designs | 	brute force    	| customized | fast
 ------- | --------|------------|---------|----
 1 	    |  1,897  | 1 |	 0.0043	 |
@@ -55,9 +74,12 @@ stripes	| designs | 	brute force    	| customized | fast
 6 	    |  727,476,474 | N/A | 831	 | 11.6
 7 	    | 12,197,221,792 |  N/A |   12,814   | 190
 8 	    | 197,913,291,570   	|     N/A | N/A  | 3,116
-9 	    | 		       	|     N/A | N/A  |
-10 	    | 		       	|     N/A | N/A  |
-11 	    | 		       	|     N/A | N/A  |
+9 	    | 	3,436,223,965,722	       	|     N/A | N/A  | NA
+10 	    | 	56,962,090,003,246	       	|     N/A | N/A  | NA
+11 	    | 	1,007,720,438,618,812	       	|     N/A | N/A  | NA
+12 	    | 	16,879,522,589,829,476	       	|     N/A | N/A  | NA
+13 	    | 	302,089,555,859,830,370	       	|     N/A | N/A  | NA
+14 	    | 	5,088,301,462,723,893,518    	|     N/A | N/A  | NA
 
 max size_t = 18,446,744,073,709,551,615
 
