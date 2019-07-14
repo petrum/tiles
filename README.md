@@ -59,9 +59,6 @@ stripes	| designs | 	Brute force    	| customized | fast
 10 	    | 		       	|     N/A | |
 11 	    | 		       	|     N/A | |
 
-* it seems it increases by a factor of 15 for each extra stripe
-* this estimates that it will solve the stripes = 11 in 17 years!
-
 (please note the code was not optimized at all, no profiler was used, no bottlenecks identified etc)
 
 ## Comparing results
