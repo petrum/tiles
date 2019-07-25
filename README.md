@@ -53,11 +53,12 @@ Find the total number of floor designs which have 11 strips of length 30.  Provi
 * the result is 100x times faster than the customized solution
 
 ## introducing dynamic programming
-* we add a cache that saves the intermediate problems
-* the subproblems are: how many stripes combinations with height N can be build on a specific Mth stripe?
-* we store the answers to these problems in an matrice 1897 x 12 (number of unique stripes by number or levels)
-* for example on row = 0, col = 0 we always have 1
-* on row = 0, col = 1 we store how many combinations of stripes we can build on top of stripe 0th, with height 1; the answer is the number of stripes compatible with the stripe 0th etc
+* we add a cache that saves the intermediate subproblems
+* the subproblems are: how many stripes combinations with height N can be build on a specific Mth stripe (M == 1897, 0 <= N < 12)?
+* we store the answers to these problems in an matrice 1897 x 12 (number of unique stripes x number or levels)
+* for example on row = 0, col = 0 we always have 1 (trivial, the height = 0, so just the base stripe)
+* on row = 0, col = 1 we store how many combinations of stripes we can build on top of stripe 0th, with height 1; the answer is equal to the number of stripes compatible with the 0th stripe
+* on the row = 1, col = 2 we basically add the results subproblems with height = col - 1 (this means 1, so simpler) for each of the compatible stripes (we already have computed al these) and so on...
 * we still do recursion, but now instead of recomputing each subproblem over and over, we just do it once, and the rest we just get the results from matrice
 * now instead of incrementing a variable for each combination, we add the result of a subproblem
 * the results are instant for any number of stripes! (a few tens of milliseconds)
