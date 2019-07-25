@@ -54,8 +54,8 @@ Find the total number of floor designs which have 11 strips of length 30.  Provi
 
 ## introducing dynamic programming
 * we add a cache that saves the intermediate subproblems
-* the subproblems are: how many stripes combinations with height N can be build on a specific Mth stripe (M == 1897, 0 <= N < 12)?
-* we store the answers to these problems in an matrice 1897 x 12 (number of unique stripes x number or levels)
+* the subproblems are: how many stripes combinations with height N can be build on a specific Mth stripe (M == 1897, 0 <= N < 11)?
+* we store the answers to these problems in an matrice 1897 x 11 (number of unique stripes x number or levels)
 * for example on row = 0, col = 0 we always have 1 (trivial, the height = 0, so just the base stripe)
 * on row = 0, col = 1 we store how many combinations of stripes we can build on top of stripe 0th, with height 1; the answer is equal to the number of stripes compatible with the 0th stripe
 * on the row = 1, col = 2 we basically add the results subproblems with height = col - 1 (this means 1, so simpler) for each of the compatible stripes (we already have computed al these) and so on...
